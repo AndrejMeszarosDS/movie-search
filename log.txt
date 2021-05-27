@@ -1,0 +1,271 @@
+index.tsx >> import store from "./store" 
+
+store << rootReducer
+      << rootSaga
+
+rootReducer << todo/rootReducer
+rootSaga << todo/sagas
+
+
+App << todo/selectors
+    << todo/actions
+
+  
+===========================================================================================
+OMDBAPI - usage, response
+
+search movie : 
+  - parameters
+    - apikey
+    - s > search text
+    - page : 1-100
+    - type : movie
+
+response :
+  - movies found :
+    {
+      "Search": [
+        {
+          "Title": "Bat El Drinking Water and Other Signs",
+          "Year": "2013",
+          "imdbID": "tt10209926",
+          "Type": "movie",
+          "Poster": "N/A"
+        }
+       ],
+      "totalResults": "181",
+      "Response": "True"
+    }
+    - no image !!!! 
+
+  - not found
+    {
+      "Response": "False",
+      "Error": "Movie not found!"
+    }
+
+  - parameter error 
+    {
+      "Response": "False",
+      "Error": "Too many results."
+    }
+
+When we make api call, we get response : 
+  - Search
+  - totalResults
+  - Response
+  - Error
+  
+
+
+AFTER WE HAVE A LIST OF MOVIES, FETCH POSTERS !!!
+
+
+
+
+
+actiontypes
+types
+actions
+reducer
+rootReducer
+sagas
+
+
+
+tt1111422
+
+
+Referrer Policystrict-origin-when-cross-origin - the problem was to preventdefault submitting button !!!!
+
+
+
+
+
+Pagination > api accepts pages 1-100
+for correct display on mobile 7 items can be used ...
+
+=====================================================================================================
+Example : totlaResult = 217 ( sherlock )
+
+- variable : pagesCount - total number of pages
+             pageActual - actual page number
+             pageItemStart - page start number
+
+- display max 7 items >> prevous - 5 pages - next
+
+- calculate pagesCount > how many pages we have >> 217 / 10 = 21.7 >> 22
+- pageActual = 1 >>
+
+- if pagesCount > 1 >> display prevous, next
+- if pagesCount < 6 >> display 5 page static
+
+- if pagesCount > 5 >> calculate which part to display
+
+-if pagesCount > 5 >> calculate pageItemStart
+  - 
+
+1234567890123456789012345678901234567890
+           12345
+
+- pagesCount = 10
+- pageActual = 5
+
+=====================================================================================================
+Favorites
+
+- localstorage 
+
+{
+  movieList: {
+    pending: false,
+    movieList: [
+      {
+        Title: 'RED',
+        Year: '2010',
+        imdbID: 'tt1245526',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BMzg2Mjg1OTk0NF5BMl5BanBnXkFtZTcwMjQ4MTA3Mw@@._V1_SX300.jpg'
+      },
+      {
+        Title: 'Red Dragon',
+        Year: '2002',
+        imdbID: 'tt0289765',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BMTQ4MDgzNjM5MF5BMl5BanBnXkFtZTYwMjUwMzY2._V1_SX300.jpg'
+      },
+      {
+        Title: 'The Hunt for Red October',
+        Year: '1990',
+        imdbID: 'tt0099810',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BZDdkODg3YzctMGVmZS00ZDM5LWIzNTctZDRlMjA5Mjc4MGViXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg'
+      },
+      {
+        Title: 'The Thin Red Line',
+        Year: '1998',
+        imdbID: 'tt0120863',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BYjEzMTM2NjAtNWFmZC00MTVlLTgyMmQtMGQyNTFjZDk5N2NmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_SX300.jpg'
+      },
+      {
+        Title: 'Red Sparrow',
+        Year: '2018',
+        imdbID: 'tt2873282',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BMTA3MDkxOTc4NDdeQTJeQWpwZ15BbWU4MDAxNzgyNTQz._V1_SX300.jpg'
+      },
+      {
+        Title: 'RED 2',
+        Year: '2013',
+        imdbID: 'tt1821694',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BMjI2ODQ4ODY3Nl5BMl5BanBnXkFtZTcwNTc2NzE1OQ@@._V1_SX300.jpg'
+      },
+      {
+        Title: 'Red Eye',
+        Year: '2005',
+        imdbID: 'tt0421239',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BNzAxNjc1ODczOF5BMl5BanBnXkFtZTcwMjE3MjEzMw@@._V1_SX300.jpg'
+      },
+      {
+        Title: 'Red Riding Hood',
+        Year: '2011',
+        imdbID: 'tt1486185',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BMTc4NjYyMzQ5MV5BMl5BanBnXkFtZTcwNjE5Mjc3NA@@._V1_SX300.jpg'
+      },
+      {
+        Title: 'Three Colors: Red',
+        Year: '1994',
+        imdbID: 'tt0111495',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BYTg1MmNiMjItMmY4Yy00ZDQ3LThjMzYtZGQ0ZTQzNTdkMGQ1L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg'
+      },
+      {
+        Title: 'Red Dawn',
+        Year: '2012',
+        imdbID: 'tt1234719',
+        Type: 'movie',
+        Poster: 'https://m.media-amazon.com/images/M/MV5BMjI0MDAwMzA1M15BMl5BanBnXkFtZTcwNzIxMjY3OA@@._V1_SX300.jpg'
+      }
+    ],
+    error: null,
+    totalResults: '4545',
+    Response: 'True',
+    searchText: 'red',
+    pageActual: 1
+  },
+  movieDetails: {
+    pending: false,
+    movieDetails: {
+      Title: '',
+      Year: 0,
+      Rated: '',
+      Released: '',
+      Runtime: '',
+      Genre: '',
+      Director: '',
+      Writer: '',
+      Actors: '',
+      Plot: '',
+      Language: '',
+      Country: '',
+      Poster: '',
+      Ratings: [],
+      Metascore: 0,
+      imdbRating: '',
+      imdbVotes: '',
+      imdbID: '',
+      Type: '',
+      DVD: '',
+      BoxOffice: '',
+      Website: '',
+      Response: false
+    },
+    error: ''
+  },
+  favorites: {
+    movieList: [],
+    loaded: false
+  }
+}
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+First working version
+
+        <Navbar
+          collapseOnSelect
+          bg="primary"
+          variant="dark"
+          expand="lg"
+          className="w-100"
+          style={{ height: "56px" }}
+        >
+          <Navbar.Brand
+            style={{
+              cursor: "pointer",
+            }}
+            onClick={() => handleGoHome()}
+          >
+            Movie search engine
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav" className="bg-primary">
+            <Nav className="mr-auto">
+              <Nav.Link
+                style={{
+                  cursor: "pointer",
+                }}
+                onClick={() => handleGoFavorites()}
+              >
+                My Favorites
+              </Nav.Link>
+            </Nav>
+            <SearchBar />
+          </Navbar.Collapse>
+        </Navbar>
