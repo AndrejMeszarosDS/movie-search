@@ -8,7 +8,7 @@ import { IMovieDetail } from "./types";
 const getMovieDetails = (searchID: string) =>
   axios.get<IMovieDetail[]>(
     "http://www.omdbapi.com/?apikey=" +
-      netlify process.env.REACT_APP_OMDB_API_KEY +
+      process.env.REACT_APP_OMDB_API_KEY +
       "&i=" +
       searchID
   );
